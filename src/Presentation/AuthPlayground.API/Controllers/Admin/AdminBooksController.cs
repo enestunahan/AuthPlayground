@@ -1,14 +1,17 @@
+using AuthPlayground.Application.Common.Authorization;
 using AuthPlayground.Application.Features.Books.Commands.CreateBook;
 using AuthPlayground.Application.Features.Books.Commands.DeleteBook;
 using AuthPlayground.Application.Features.Books.Commands.UpdateBook;
 using AuthPlayground.Application.Features.Books.Queries.GetBooksForAdmin;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthPlayground.API.Controllers.Admin;
 
 [ApiController]
 [Route("api/admin/books")]
+[Authorize(Roles = AppRoles.Admin)]
 public sealed class AdminBooksController(ISender sender) : ControllerBase
 {
     [HttpGet]
